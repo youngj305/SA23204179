@@ -1,0 +1,17 @@
+Package: SA23204179
+Type: Package
+Title: Example functions for 'Statistical Computing' course
+Version: 1.0
+Date: 2023-11-27
+Author: Jian Yang 
+Maintainer: Jian Yang <1326662908@qq.com> 
+Description: Several R and Rcpp function are included in this package for illustration. 
+License: GPL (>= 2)
+Imports: Rcpp, microbenchmark, stats, boot, bootstrap, DAAG
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+LinkingTo: Rcpp
+RoxygenNote: 7.2.3
+Encoding: UTF-8
+URL: http://github.com/youngj305/SA23204179
+BugReports: http://github.com/youngj305/SA23204179/issues
