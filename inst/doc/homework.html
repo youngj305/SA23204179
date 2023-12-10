@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Jian Yang" />
+
+<meta name="date" content="2023-11-27" />
+
+<title>Introduction to SA23204179 Homework</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to SA23204179 Homework</h1>
+<h4 class="author">Jian Yang</h4>
+<h4 class="date">2023-11-27</h4>
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>SA23204179 is a R package, including 2023 fall statistical computing
+course homework, the following instructions are thest functions.</p>
+<div id="homework1" class="section level2">
+<h2>Homework1</h2>
+<p>In homework1, we learned how to generate random number, and it
+includes “Use inverse transformation method to reproduce the function
+Sample when replace=TRUE”, “Use the inverse transform method to generate
+a random sample of size n from the standard Laplace
+distribution(Exercise 3.2)”, “Use the acceptance-rejection method to
+generate a random sample of size n from the Beta(a,b)(Exercise 3.7)” and
+“Generate a random sample of size n for which the the pdf is rescaled
+Epanechnikov kernel(Exercise 3.9)”</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(SA23204179)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>n<span class="ot">&lt;-</span><span class="dv">1000</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>X1<span class="ot">&lt;-</span><span class="fu">my.sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,n)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>X2<span class="ot">&lt;-</span><span class="fu">my.sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,n,<span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>X3<span class="ot">&lt;-</span><span class="fu">my.sample</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>),n,<span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>X4<span class="ot">&lt;-</span><span class="fu">my.laplace</span>(<span class="dv">1000</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>X5<span class="ot">&lt;-</span><span class="fu">my.rbeta</span>(<span class="dv">1000</span>,<span class="dv">3</span>,<span class="dv">2</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>X6<span class="ot">&lt;-</span><span class="fu">rEpa</span>(<span class="dv">1000</span>)</span></code></pre></div>
+</div>
+<div id="homework2" class="section level2">
+<h2>Homework2</h2>
+<p>In homework2, we learned how to compute the Monte Carlo integration,
+and it includes “Compute the percent reduction in variance of <span class="math inline">\(\hat{\theta}\)</span> that can be achieved using
+antithetic variate method compared with simple MC (Exercise 5.6)and”Use
+a Monte Carlo simulation to estimate <span class="math inline">\(\theta\)</span> by the antithetic variate approach
+and by the simple Monte Carlo method(Exercise 5.7)”</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">my_pi</span>(<span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 3.139619</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">my_pi</span>(<span class="fl">0.8</span>)</span></code></pre></div>
+<pre><code>## [1] 3.145074</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">my_pi</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 3.140625</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>result<span class="ot">&lt;-</span><span class="fu">mc</span>(<span class="dv">1000</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">mean</span>(result<span class="sc">$</span>simple)</span></code></pre></div>
+<pre><code>## [1] 1.718212</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">mean</span>(result<span class="sc">$</span>anti)</span></code></pre></div>
+<pre><code>## [1] 1.71828</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>(<span class="fu">var</span>(result<span class="sc">$</span>simple)<span class="sc">-</span><span class="fu">var</span>(result<span class="sc">$</span>anti))<span class="sc">/</span><span class="fu">var</span>(result<span class="sc">$</span>simple)</span></code></pre></div>
+<pre><code>## [1] 0.9687163</code></pre>
+</div>
+<div id="homework3" class="section level2">
+<h2>Homework3</h2>
+<p>In homework3, we learned Monte Carlo Methods in Inference, and it
+includes “Compute a Monte Carlo estimate by importance sampling(Exercise
+5.14)”, “Use a Monte Carlo experiment to estimate the coverage
+probability of the t-interval for random samples(Exercise 6.5)” and “Use
+Monte Carlo simulation to investigate the empirical Type I error
+rate(Exercise 6.A)”</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="fu">mc1</span>(<span class="fl">1e4</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="fu">mc2</span>(<span class="dv">2000</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>c<span class="ot">&lt;-</span><span class="fu">mc3</span>(<span class="dv">20</span>,<span class="fl">1e4</span>)</span></code></pre></div>
+</div>
+<div id="homework4" class="section level2">
+<h2>Homework4</h2>
+<p>In homewrok4, we learned bootstrap, and it includes “Compare the mean
+bias and the sd of bootstrap estimate with the theoretical ones” and
+“Obtain a bootstrap t confidence interval estimate for the correlation
+statistic(Exercise 7.3)”</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>a1<span class="ot">&lt;-</span><span class="fu">B_B.H</span>(<span class="dv">1000</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>n5<span class="ot">&lt;-</span><span class="fu">my.boots</span>(<span class="dv">5</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>n10<span class="ot">&lt;-</span><span class="fu">my.boots</span>(<span class="dv">10</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>n20<span class="ot">&lt;-</span><span class="fu">my.boots</span>(<span class="dv">20</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">rbind</span>(n5,n10,n20),<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##       Bias Bias.Theo     Se Se.Theo
+## n5  0.6309    0.5000 2.7290  1.4434
+## n10 0.2064    0.2222 0.7872  0.7857
+## n20 0.1020    0.1053 0.4981  0.4962</code></pre>
+</div>
+<div id="homework5" class="section level2">
+<h2>Homework5</h2>
+<p>In homework5, we learned jackknife estimate, cross validation, and it
+includes “Compute 95% bootstrap confidence intervals by the standard
+normal, basic, percentile, and BCa methods(Exercise 7.5)”, “Obtain
+jackknife estimates of bias and standard error(Exercise 7.8)”, and “Use
+leave-two-out cross validation to compare the models(Exercise 7.11)”</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">library</span>(bootstrap)</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">jackn</span>(scor)</span></code></pre></div>
+<pre><code>##   jack.bias     jack.se 
+## 0.001069139 0.049552307</code></pre>
+</div>
+<div id="homework6" class="section level2">
+<h2>Homework6</h2>
+<p>In homework6, we learned permutation, and it includes “Implement the
+two-sample Cramer-von Mises test for equal distributions as a
+permutation test(Exercise 8.1)”and “Implement a permutation test for
+equal variance based on the maximum number of extreme points that
+applies when sample sizes are not necessarily equal(Exercise 8.3)”</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="fu">attach</span>(chickwts)</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(weight[feed <span class="sc">==</span> <span class="st">&quot;soybean&quot;</span>]);y <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(weight[feed <span class="sc">==</span> <span class="st">&quot;linseed&quot;</span>])</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="fu">detach</span>(chickwts)</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(x, y)</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">length</span>(x), <span class="fu">length</span>(y))</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>boot.obj <span class="ot">&lt;-</span> <span class="fu">boot</span>(<span class="at">data =</span> z, <span class="at">statistic =</span> W2, <span class="at">R =</span> <span class="dv">9999</span>,<span class="at">sim =</span> <span class="st">&quot;permutation&quot;</span>, <span class="at">sizes =</span> N)</span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a>ts <span class="ot">&lt;-</span> <span class="fu">c</span>(boot.obj<span class="sc">$</span>t0,boot.obj<span class="sc">$</span>t)</span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a><span class="fu">mean</span>(ts<span class="sc">&gt;=</span>ts[<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## [1] 0.4039</code></pre>
+</div>
+<div id="homework7" class="section level2">
+<h2>Homework7</h2>
+<p>In homework7, we learned Markov Chain Monte Carlo Methods, and it
+includes “Implement a random walk Metropolis sampler for generating the
+standard Laplace distribution(Exercise 9.4)”and “Implement a Gibbs
+sampler to generate a bivariate normal chain with zero means, unit
+standard deviations, and correlation 0.9.(Exercise 9.7)”</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">solve_alpha</span>(<span class="fl">1e6</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="fl">0.1</span>)</span></code></pre></div>
+<pre><code>## [1] -3.170937</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>a7<span class="ot">&lt;-</span><span class="fu">rw.Metropolis</span>(.<span class="dv">5</span>, <span class="dv">100</span>, <span class="dv">10000</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>b7<span class="ot">&lt;-</span><span class="fu">my.gibbs</span>(<span class="dv">15000</span>,<span class="dv">5000</span>)</span></code></pre></div>
+</div>
+<div id="homework8" class="section level2">
+<h2>Homework8</h2>
+<p>In homework8, we learned Numerical Methods in R, and it includes
+“Implement a numeric solve of the EM algorithm”and “Compare it to
+MLE”</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>u<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">11</span>,<span class="dv">8</span>,<span class="dv">27</span>,<span class="dv">13</span>,<span class="dv">16</span>,<span class="dv">0</span>,<span class="dv">23</span>,<span class="dv">10</span>,<span class="dv">24</span>,<span class="dv">2</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>v<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">9</span>,<span class="dv">28</span>,<span class="dv">14</span>,<span class="dv">17</span>,<span class="dv">1</span>,<span class="dv">24</span>,<span class="dv">11</span>,<span class="dv">25</span>,<span class="dv">3</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="fu">em</span>(<span class="dv">1</span>,u,v)</span></code></pre></div>
+<pre><code>## $lambda
+## [1] 0.0719735
+## 
+## $error
+## [1] 7.367822e-11</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>( <span class="dv">0</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">3</span>,<span class="sc">-</span><span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">4</span>,<span class="sc">-</span><span class="dv">4</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="sc">-</span><span class="dv">3</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">0</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">4</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">0</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">5</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">5</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a><span class="sc">-</span><span class="dv">4</span>,<span class="sc">-</span><span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">6</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a><span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">4</span>,<span class="sc">-</span><span class="dv">5</span>,<span class="sc">-</span><span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">6</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a><span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">5</span>,<span class="sc">-</span><span class="dv">6</span>,<span class="sc">-</span><span class="dv">6</span>,<span class="dv">0</span>), <span class="dv">9</span>, <span class="dv">9</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">solve_game</span>(A)</span></code></pre></div>
+</div>
+<div id="homework9" class="section level2">
+<h2>Homework9</h2>
+<p>In homework9, we learned High Performance Computation with Rcpp, and
+it includes “Compare the computation time of the Gibbs sampler with R
+and Gibbs sampler with Rcpp by microbenchmark.”</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">library</span>(Rcpp)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span></code></pre></div>
+<pre><code>## Warning: package &#39;microbenchmark&#39; was built under R version 4.3.2</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="dv">2</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="dv">3</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>n<span class="ot">&lt;-</span><span class="dv">10</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>num<span class="ot">&lt;-</span><span class="dv">1000</span></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>ts <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(<span class="at">gibbR=</span><span class="fu">r_gibbs</span>(num,a,b,n),<span class="at">gibbC=</span><span class="fu">rcpp_gibbs</span>(num,a,b,n))</span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>ts</span></code></pre></div>
+<pre><code>## Unit: microseconds
+##   expr    min     lq      mean  median       uq     max neval cld
+##  gibbR 7698.5 8427.7 10977.999 10001.7 12506.85 24347.6   100  a 
+##  gibbC  749.5  775.6   816.632   795.3   843.30  1155.2   100   b</code></pre>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
